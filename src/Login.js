@@ -14,7 +14,8 @@ export const Login = () => {
 
     const onClickLogin = async () => {
         const auth = getAuth();
-        const phoneNumber = value;
+        const phoneNumber = '+976'+value;
+        console.log(phoneNumber)
         confirmationResult.current = await signInWithPhoneNumber(auth, phoneNumber, recaptchaVerifier.current);
 
         setValue('');
@@ -31,18 +32,16 @@ export const Login = () => {
         <div>
             {loginTrue ? (
                 <div>
-                <div id="recaptcha-container"></div>
-                <input type="number" placeholder="Дугаараа оруулна уу" value={ value } onChange={ (e) => setValue(e.target.value) } />
-                <button onClick={ onClickLogin }>Login</button>
+                    <div id="recaptcha-container"></div>
+                    <input type="number" placeholder="Дугаараа оруулна уу" value={value} onChange={(e) => setValue(e.target.value)} />
+                    <button onClick={onClickLogin}>Login</button>
                 </div>
-              
             ) : (
                 <div>
-                    <input type="text" placeholder="баталгаажуулах код " value={ value } onChange={ (e) => setValue(e.target.value) }/>
-                    <button onClick={ onClickCheckCode }>confirm code</button>
+                    <input type="text" placeholder="баталгаажуулах код " value={value} onChange={(e) => setValue(e.target.value)} />
+                    <button onClick={onClickCheckCode}>confirm code</button>
                 </div>
             )
-
             }
         </div>
     )

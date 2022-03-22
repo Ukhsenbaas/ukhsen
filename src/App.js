@@ -4,8 +4,8 @@ import './App.css';
 import { Login } from './Login.js';
 import { Main } from './Main.js'
 function App() {
-  const [ user, setUser ] = useState(null);
-    const [ isLoading, setIsLoading ] = useState(true);
+    const [user, setUser] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
     useEffect(() => {
         const auth = getAuth();
         onAuthStateChanged(auth, (user) => {
@@ -24,14 +24,15 @@ function App() {
     }, []);
 
     if (isLoading) {
-      return <h1>Loading...</h1>
-  }
+        return <h1>Loading...</h1>
+    }
 
-  if (!user) {
-      return <Login />
-  }
-
-  return <Main />
+    return (
+        <div>
+            {
+                user ? <Main /> : <Login />
+            }
+        </div>
+    )
 }
-
 export default App;
